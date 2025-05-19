@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package agrama.proto;
+
+option go_package = "github.com/yourusername/agrama/proto";
+option java_package = "io.agrama.proto";
+option java_multiple_files = true;
+
+// Node represents a node in the graph
+message Node {
+  string uuid = 1;
+  string type = 2;          // Session | Task | CodeUnit …
+  int64  created_at = 3;
+  int64  updated_at = 4;
+  bytes  content = 5;       // protobuf-packed struct or raw bytes
+  repeated float embedding = 6 [packed=true];
+}
+
+// Edge represents a directed edge between two nodes
+message Edge {
+  string src = 1;
+  string dst = 2;
+  string type = 3;
+  float weight = 4;
+}
+
+// NodeRequest is used for node operations
+message NodeRequest {
+  Node node = 1;
+}
+
+// NodeResponse is returned from node operations
+message NodeResponse {
+  Node node = 1;
+  string status = 2;
+  string message = 3;
+}
+
+// EdgeRequest is used for edge operations
+message EdgeRequest {
+  Edge edge = 1;
+}
+
+// EdgeResponse is returned from edge operations
+message EdgeResponse {
+  Edge edge = 1;
+  string status = 2;
+  string message = 3;
+}
+
+// SearchRequest is used for semantic search
+message SearchRequest {
+  repeated float embedding = 1 [packed=true];
+  int32 k = 2;
+}
+
+// SearchResponse is returned from semantic search
+message SearchResponse {
+  repeated Node nodes = 1;
+  repeated float distances = 2 [packed=true];
+  string status = 3;
+  string message = 4;
+}
+
+// KeywordSearchRequest is used for keyword search
+message KeywordSearchRequest {
+  string query = 1;
+  int32 k = 2;
+  repeated string fields = 3;
+}
+
+// KeywordSearchResponse is returned from keyword search
+message KeywordSearchResponse {
+  repeated Node nodes = 1;
+  repeated float scores = 2 [packed=true];
+  string status = 3;
+  string message = 4;
+}
+
+// SummariseRequest is used for summarisation
+message SummariseRequest {
+  string root_uuid = 1;
+}
+
+// SummariseResponse is returned from summarisation
+message SummariseResponse {
+  Node summary_node = 1;
+  string status = 2;
+  string message = 3;
+}

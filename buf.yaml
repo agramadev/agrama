@@ -1,0 +1,13 @@
+version: v1
+name: buf.build/yourusername/agrama
+deps:
+  - buf.build/googleapis/googleapis
+build:
+  roots:
+    - agrama/proto/buf
+lint:
+  use:
+    - DEFAULT
+breaking:
+  use:
+    - FILE

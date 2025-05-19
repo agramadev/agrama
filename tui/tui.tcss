@@ -1,0 +1,51 @@
+/* Agrama TUI CSS */
+
+/* Main layout */
+#graph-tree {
+    width: 30%;
+    min-width: 30;
+    border: solid green;
+}
+
+#preview {
+    height: 50%;
+    border: solid blue;
+}
+
+#neighbors {
+    height: 30%;
+    border: solid red;
+}
+
+#command-palette {
+    height: 20%;
+    border: solid yellow;
+}
+
+/* Tree widget */
+Tree {
+    padding: 1;
+}
+
+/* Header and Footer */
+Header {
+    background: $primary;
+    color: $text;
+}
+
+Footer {
+    background: $primary;
+    color: $text;
+}
+
+/* Dark mode */
+.dark {
+    background: $surface-darken-1;
+    color: $text;
+}
+
+/* Light mode */
+.light {
+    background: $surface-lighten-1;
+    color: $text;
+}

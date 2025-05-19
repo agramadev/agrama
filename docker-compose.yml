@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  valkey:
+    image: valkey/valkey:8.1.1-alpine
+    command: ["valkey-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 10s
+      retries: 3
+    ports:
+      - "6379:6379"
+    volumes:
+      - valkey_data:/data
+    networks:
+      - agrama-network
+
+  faiss:
+    image: ghcr.io/facebookresearch/faiss-cpu:1.11.0
+    command: ["sleep", "infinity"]
+    networks:
+      - agrama-network
+
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ./models:/root/.ollama/models
+    ports:
+      - "11434:11434"
+    networks:
+      - agrama-network
+    environment:
+      - OLLAMA_MODELS=qwen3:1.7b
+    command: ["ollama", "serve"]
+
+  agramad:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    depends_on:
+      valkey:
+        condition: service_healthy
+    environment:
+      - VALKEY_URL=redis://valkey:6379
+      - FAISS_HOST=faiss
+      - OLLAMA_URL=http://ollama:11434
+    ports:
+      - "8000:8000"
+    networks:
+      - agrama-network
+
+networks:
+  agrama-network:
+    driver: bridge
+
+volumes:
+  valkey_data:

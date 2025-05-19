@@ -1,0 +1,8 @@
+version: v1
+plugins:
+  - name: python
+    out: agrama/proto/generated
+    opt: pyi_out=agrama/proto/generated
+  - name: grpc_python
+    out: agrama/proto/generated
+    opt: grpc_python_out=agrama/proto/generated

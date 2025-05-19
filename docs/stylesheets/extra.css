@@ -1,0 +1,92 @@
+/* Custom styles for Agrama documentation */
+
+/* Improve code block readability */
+.md-typeset code {
+  font-size: 0.9em;
+}
+
+/* Custom admonition for API endpoints */
+.md-typeset .admonition.api,
+.md-typeset details.api {
+  border-color: rgb(43, 155, 70);
+}
+
+.md-typeset .api > .admonition-title,
+.md-typeset .api > summary {
+  background-color: rgba(43, 155, 70, 0.1);
+}
+
+.md-typeset .api > .admonition-title::before,
+.md-typeset .api > summary::before {
+  background-color: rgb(43, 155, 70);
+  -webkit-mask-image: var(--md-admonition-icon--note);
+          mask-image: var(--md-admonition-icon--note);
+}
+
+/* Custom styling for keyboard shortcuts */
+.md-typeset kbd {
+  box-shadow: 0 0.1rem 0 rgba(0, 0, 0, 0.2), 0 0 0 0.1rem #d3d3d3 inset;
+  background-color: #fafafa;
+  color: #212121;
+  border-radius: 0.2rem;
+  padding: 0 0.4rem;
+  font-size: 0.85em;
+}
+
+/* Improve table readability */
+.md-typeset table:not([class]) {
+  font-size: 0.75rem;
+}
+
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  padding: 0.5em 1em;
+}
+
+/* Custom styling for API method badges */
+.method {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+  text-transform: uppercase;
+}
+
+.method.get {
+  background-color: #61affe;
+  color: #fff;
+}
+
+.method.post {
+  background-color: #49cc90;
+  color: #fff;
+}
+
+.method.put {
+  background-color: #fca130;
+  color: #fff;
+}
+
+.method.delete {
+  background-color: #f93e3e;
+  color: #fff;
+}
+
+/* Version selector styling */
+.md-version__current {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+  background-color: rgba(0, 0, 0, 0.1);
+}
